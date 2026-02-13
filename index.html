@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Meu Hambúrguer - Cardápio Digital</title>
+    
+    <!-- Meta Tags para SEO -->
+    <meta name="description" content="Cardápio digital Meu Hambúrguer - Hambúrguer artesanal feito na hora. Peça via WhatsApp!">
+    <meta name="keywords" content="hambúrguer, delivery, comida, lanche, artesanal, hamburguer, burger">
+    <meta name="author" content="Meu Hambúrguer">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Meu Hambúrguer - Cardápio Digital">
+    <meta property="og:description" content="Hambúrguer artesanal feito na hora. Peça via WhatsApp!">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:url" content="https://meuhamburguer.com.br">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Meu Hambúrguer - Cardápio Digital">
+    <meta name="twitter:description" content="Hambúrguer artesanal feito na hora. Peça via WhatsApp!">
+    <meta name="twitter:image" content="logo.png">
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#D32F2F">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="logo.png">
+    
+    <!-- Estilos e Fontes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="imagem/logo.png">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <!-- Header Principal -->
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo-image">
+                    <a href="index.html"><img src="imagem/logo.png" alt="Meu Hambúrguer" id="logoImage" 
+                         loading="eager"
+                         onerror="this.style.display='none'; document.getElementById('logoTextFallback').style.display='flex';"></a>
+                    <div class="logo-text-fallback" id="logoTextFallback">
+                        MEU HAMBÚRGUER
+                    </div>
+                </div>
+            </div>
+            <p class="tagline">Hambúrguer artesanal feito na hora</p>
+            <div class="highlight">🔥 PEDIDOS VIA WHATSAPP</div>
+            
+            <!-- Carrinho Desktop -->
+            <div class="cart-header-desktop">
+                <div class="cart-info" id="cartInfo">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span> itens
+                    <span class="cart-total">R$ 0,00</span>
+                </div>
+                <button class="btn btn-cart-desktop" id="viewCartBtnDesktop" aria-label="Ver carrinho de compras">
+                    <i class="fas fa-eye"></i> VER PEDIDO
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Carrinho Flutuante Mobile -->
+        <div class="cart-floating-mobile" id="cartFloatingMobile">
+            <div class="cart-floating-content">
+                <div class="cart-floating-info">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div class="floating-cart-details">
+                        <span class="floating-cart-count">0</span> itens
+                        <span class="floating-cart-total">R$ 0,00</span>
+                    </div>
+                </div>
+                <button class="btn btn-floating-cart" id="viewCartBtnMobile" aria-label="Ver pedido completo">
+                    VER PEDIDO
+                </button>
+            </div>
+        </div>
+
+        <!-- Seção do Cardápio -->
+        <section class="menu-section">
+            <h1 class="section-title">NOSSO CARDÁPIO</h1>
+            
+            <div class="menu-grid" id="menuGrid">
+                <!-- Itens do cardápio serão carregados via JavaScript -->
+            </div>
+            
+            <!-- Seção de Promoções Atualizada -->
+            <section class="promotions-section">
+                <h2 class="section-title">
+                    <i class="fas fa-tag"></i> PROMOÇÕES E OFERTAS
+                </h2>
+                
+                <div class="promotions-container">
+                    <!-- PROMOÇÃO DO GRUPO WHATSAPP -->
+                    <div class="promotion-card promotion-featured" id="whatsappGroupPromo">
+                        <div class="promotion-badge">GRÁTIS</div>
+                        <div class="promotion-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="promotion-content">
+                            <h3>ENTRE NO NOSSO GRUPO</h3>
+                            <p class="promotion-description">
+                                Entre no nosso grupo do WhatsApp e ganhe um hambúrguer grátis na próxima compra
+                            </p>
+                            <div class="promotion-details">
+                                <p><i class="fas fa-check-circle"></i> Hambúrguer Clássico grátis</p>
+                                <p><i class="fas fa-check-circle"></i> Válido para próxima compra</p>
+                                <p><i class="fas fa-check-circle"></i> Cupom exclusivo no grupo</p>
+                            </div>
+                            <!-- SUBSTITUA O LINK ABAIXO PELO SEU LINK DO GRUPO -->
+                            <a href="https://chat.whatsapp.com/LH9DxbcrNOy2IzhWFXUTBK?mode=gi_t" 
+                               class="btn btn-apply-promo" 
+                               target="_blank" 
+                               rel="noopener noreferrer">
+                                <i class="fab fa-whatsapp"></i> ENTRAR NO GRUPO
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="promotion-card">
+                        <div class="promotion-badge">-20%</div>
+                        <div class="promotion-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="promotion-content">
+                            <h3>COMBO FAMÍLIA</h3>
+                            <p class="promotion-description">
+                                4 hambúrgueres + 4 refrigerantes por apenas R$ 60,00
+                            </p>
+                            <div class="promotion-details">
+                                <p><i class="fas fa-check-circle"></i> Economize R$ 15,00</p>
+                                <p><i class="fas fa-check-circle"></i> Escolha até 4 sabores</p>
+                            </div>
+                            <button class="btn btn-apply-promo" data-combo="familia">
+                                <i class="fas fa-cart-plus"></i> ADICIONAR COMBO
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="promotion-card">
+                        <div class="promotion-badge">2 POR 1</div>
+                        <div class="promotion-icon">
+                            <i class="fas fa-beer"></i>
+                        </div>
+                        <div class="promotion-content">
+                            <h3>SEGUNDA DA CERVEJA</h3>
+                            <p class="promotion-description">
+                                Toda segunda-feira: compre 1 cerveja e leve 2!
+                            </p>
+                            <div class="promotion-details">
+                                <p><i class="fas fa-check-circle"></i> Apenas segundas-feiras</p>
+                                <p><i class="fas fa-check-circle"></i> Válido para Heineken e Brahma</p>
+                            </div>
+                            <button class="btn btn-apply-promo" data-combo="cerveja">
+                                <i class="fas fa-glass-cheers"></i> VER OPÇÕES
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Resumo do Pedido após o Cardápio (Mobile) -->
+            <div class="cart-after-menu" id="cartAfterMenu">
+                <div class="cart-summary-box">
+                    <div class="cart-summary-header">
+                        <h2><i class="fas fa-shopping-cart"></i> SEU PEDIDO</h2>
+                    </div>
+                    <div class="cart-summary-content">
+                        <div class="cart-summary-info" id="cartSummaryInfo">
+                            <div class="empty-summary-message">
+                                <i class="fas fa-shopping-basket"></i>
+                                <p>Seu carrinho está vazio</p>
+                                <p>Adicione itens do cardápio!</p>
+                            </div>
+                        </div>
+                        <div class="cart-summary-total">
+                            <span>TOTAL:</span>
+                            <span id="summaryTotal">R$ 0,00</span>
+                        </div>
+                        <button class="btn btn-view-full-cart" id="viewFullCartBtn">
+                            <i class="fas fa-eye"></i> VER PEDIDO COMPLETO
+                        </button>
+                        <button class="btn btn-finalize-from-summary" id="finalizeFromSummaryBtn">
+                            FINALIZAR PEDIDO <i class="fas fa-credit-card"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal do Carrinho Completo -->
+        <div class="cart-modal" id="cartModal">
+            <div class="cart-modal-content">
+                <div class="cart-modal-header">
+                    <h2><i class="fas fa-shopping-cart"></i> SEU PEDIDO</h2>
+                    <button class="close-modal" id="closeCartModal" aria-label="Fechar carrinho">&times;</button>
+                </div>
+                
+                <div class="cart-items" id="cartItems">
+                    <div class="empty-cart-message" id="emptyCartMessage">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>Seu carrinho está vazio</p>
+                        <p>Adicione itens deliciosos do nosso cardápio!</p>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="cart-total-row">
+                        <span>TOTAL:</span>
+                        <span id="modalOrderTotal">R$ 0,00</span>
+                    </div>
+                    
+                    <div class="cart-actions">
+                        <button class="btn btn-continue-shopping" id="continueShoppingBtn">
+                            <i class="fas fa-arrow-left"></i> CONTINUAR COMPRANDO
+                        </button>
+                        <button class="btn btn-finalize-order" id="finalizeOrderBtn">
+                            FINALIZAR PEDIDO <i class="fas fa-credit-card"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Adicionais -->
+        <div class="additions-modal" id="additionsModal">
+            <div class="additions-modal-content">
+                <div class="additions-modal-header">
+                    <h2 id="additionsItemName">Personalizar Item</h2>
+                    <button class="close-modal" id="closeAdditionsModal" aria-label="Fechar personalização">&times;</button>
+                </div>
+                
+                <div class="additions-list" id="additionsList">
+                    <!-- Adicionais serão carregados via JavaScript -->
+                </div>
+                
+                <div class="additions-summary">
+                    <div class="additions-total">
+                        <span>Total do item:</span>
+                        <span id="additionsItemTotal">R$ 0,00</span>
+                    </div>
+                    
+                    <div class="additions-actions">
+                        <button class="btn btn-cancel-additions" id="cancelAdditionsBtn">
+                            <i class="fas fa-times"></i> CANCELAR
+                        </button>
+                        <button class="btn btn-add-to-cart" id="addToCartBtn">
+                            <i class="fas fa-cart-plus"></i> ADICIONAR AO CARRINHO
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção de Confirmação do Pedido -->
+        <section class="order-summary" id="orderSummary">
+            <h2 class="section-title">CONFIRMAÇÃO DO PEDIDO</h2>
+            <div class="order-items" id="orderItems">
+                <!-- Itens do pedido serão carregados via JavaScript -->
+            </div>
+            
+            <!-- Seção de Brinde Grátis -->
+            <div class="gift-section" id="giftSection">
+                <h3 class="gift-title">
+                    <i class="fas fa-gift"></i> ESCOLHA SEU BRINDE GRÁTIS!
+                </h3>
+                <p class="gift-description">Para agradecer seu pedido, escolha um brinde:</p>
+                
+                <div class="gift-options">
+                    <div class="gift-option" data-gift="pipoca">
+                        <div class="gift-image">
+                            <img src="imagem/pipoca.png" alt="Pipoca" 
+                                 loading="lazy"
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"gift-icon\"><i class=\"fas fa-popcorn\"></i></div>
+                            <div class="gift-badge">GRÁTIS</div>
+                        </div>
+                        <div class="gift-info">
+                            <h4>Pipoca</h4>
+                            <p>Pacote de pipoca salgada</p>
+                        </div>
+                        <div class="gift-selector">
+                            <div class="gift-radio"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="gift-option" data-gift="pirulito">
+                        <div class="gift-image">
+                            <img src="imagem/pirulito.png" alt="Pirulito" 
+                                 loading="lazy"
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"gift-icon\"><i class=\"fas fa-candy-cane\"></i></div>
+                            <div class="gift-badge">GRÁTIS</div>
+                        </div>
+                        <div class="gift-info">
+                            <h4>Pirulito</h4>
+                            <p>Pirulito de diversos sabores</p>
+                        </div>
+                        <div class="gift-selector">
+                            <div class="gift-radio"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="gift-option" data-gift="chocolate">
+                        <div class="gift-image">
+                            <img src="imagem/chocolate.png" alt="Chocolate" 
+                                 loading="lazy"
+                                 onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\"gift-icon\"><i class=\"fas fa-cookie-bite\"></i></div>
+                            <div class="gift-badge">GRÁTIS</div>
+                        </div>
+                        <div class="gift-info">
+                            <h4>Chocolate</h4>
+                            <p>Barra de chocolate ao leite</p>
+                        </div>
+                        <div class="gift-selector">
+                            <div class="gift-radio"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="gift-option" data-gift="nenhum">
+                        <div class="gift-image">
+                            <div class="gift-icon">
+                                <i class="fas fa-times-circle"></i>
+                            </div>
+                        </div>
+                        <div class="gift-info">
+                            <h4>Sem brinde</h4>
+                            <p>Prefiro não receber brinde</p>
+                        </div>
+                        <div class="gift-selector">
+                            <div class="gift-radio"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-total">
+                <span>TOTAL:</span>
+                <span id="orderTotal">R$ 0,00</span>
+            </div>
+            <button class="btn btn-whatsapp" id="proceedToFormBtn">
+                <i class="fab fa-whatsapp"></i> CONTINUAR PARA DADOS DO PEDIDO
+            </button>
+        </section>
+
+        <!-- Formulário de Dados do Cliente COM OPÇÃO DE ENTREGA/RETIRADA -->
+        <section class="form-section" id="customerForm">
+            <h2 class="section-title">DADOS DO PEDIDO</h2>
+            <p class="form-instruction">Preencha os dados abaixo para finalizar seu pedido:</p>
+            
+            <!-- Formulário oculto do Google Forms -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" 
+                    onload="if(submitted){showWhatsAppSection();}"></iframe>
+            
+            <form id="orderForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeEfYeibHjK58glQ954JYJrDnzgfHsvmB2sD4-aCTMrV5E3Jw/formResponse" 
+                  method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+                
+                <!-- Campos ocultos que serão preenchidos via JavaScript -->
+                <input type="hidden" name="entry.1423794930" id="hiddenCustomerName">
+                <input type="hidden" name="entry.1959732539" id="hiddenPhone">
+                <input type="hidden" name="entry.873423111" id="hiddenNeighborhood">
+                <input type="hidden" name="entry.141250512" id="hiddenPaymentMethod">
+                <input type="hidden" name="entry.1749157495" id="hiddenObservations">
+                <input type="hidden" name="entry.1257731678" id="hiddenOrderItems">
+                <input type="hidden" name="entry.65862780" id="hiddenTotalAmount">
+                <input type="hidden" name="entry.1954558547" id="hiddenDeliveryType">
+                
+                <div class="form-group">
+                    <label class="form-label" for="customerName">
+                        Nome completo <span class="required">*</span>
+                    </label>
+                    <input type="text" id="customerName" class="form-input" required 
+                           placeholder="Digite seu nome completo" autocomplete="name">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="customerPhone">
+                        WhatsApp <span class="required">*</span>
+                    </label>
+                    <input type="tel" id="customerPhone" class="form-input" required 
+                           placeholder="(81) 98888-8888" pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}"
+                           autocomplete="tel">
+                    <small class="form-hint">Formato: (81) 98888-8888</small>
+                </div>
+                
+                <!-- OPÇÃO DE ENTREGA/RETIRADA DENTRO DO FORMULÁRIO -->
+                <div class="form-group">
+                    <label class="form-label">
+                        Recebimento <span class="required">*</span>
+                    </label>
+                    <div class="delivery-options-form">
+                        <div class="delivery-option-form selected" data-type="pickup">
+                            <div class="delivery-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="delivery-info">
+                                <h3>Retirada</h3>
+                                <p>Retire no nosso estabelecimento</p>
+                            </div>
+                            <div class="delivery-selector">
+                                <div class="delivery-radio selected"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="delivery-option-form" data-type="delivery">
+                            <div class="delivery-icon">
+                                <i class="fas fa-motorcycle"></i>
+                            </div>
+                            <div class="delivery-info">
+                                <h3>Entrega</h3>
+                                <p>Entregamos no seu endereço</p>
+                            </div>
+                            <div class="delivery-selector">
+                                <div class="delivery-radio"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="neighborhood">
+                        Bairro <span class="required">*</span>
+                    </label>
+                    <input type="text" id="neighborhood" class="form-input" required 
+                           placeholder="Digite seu bairro" autocomplete="address-level2">
+                </div>
+                
+                <div class="form-group" id="streetGroup">
+                    <label class="form-label" for="street">
+                        Rua e Número <span class="optional-text">(opcional para retirada)</span>
+                    </label>
+                    <input type="text" id="street" class="form-input" 
+                           placeholder="Rua Exemplo, 123" autocomplete="street-address">
+                    <small class="form-hint">Para entregas, informe o endereço completo</small>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="paymentMethod">
+                        Forma de pagamento <span class="required">*</span>
+                    </label>
+                    <select id="paymentMethod" class="form-select" required>
+                        <option value="">Selecione uma opção</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                        <option value="Cartão">Cartão</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="observations">Observações (opcional)</label>
+                    <textarea id="observations" class="form-textarea" 
+                              placeholder="Alguma observação sobre o pedido? Ex: sem cebola, ponto da carne, etc."
+                              maxlength="500"></textarea>
+                    <div class="char-counter"><span id="charCount">0</span>/500</div>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-back" id="backToOrderBtn">
+                        <i class="fas fa-arrow-left"></i> VOLTAR AO PEDIDO
+                    </button>
+                    <button type="submit" class="btn btn-submit" id="submitFormBtn">
+                        <i class="fas fa-paper-plane"></i> ENVIAR DADOS E IR PARA WHATSAPP
+                    </button>
+                </div>
+                
+                <div class="form-footer">
+                    <p class="form-note">
+                        <i class="fas fa-info-circle"></i> Seus dados serão enviados para nosso sistema 
+                        e em seguida você será redirecionado ao WhatsApp para confirmar o pedido.
+                    </p>
+                </div>
+            </form>
+        </section>
+
+        <!-- Seção Final do WhatsApp -->
+        <section class="whatsapp-section" id="whatsappSection">
+            <h2 class="section-title">ENVIE SEU PEDIDO</h2>
+            <p>Clique no botão abaixo para abrir o WhatsApp com seu pedido pronto. Basta enviar a mensagem!</p>
+            
+            <div class="whatsapp-message" id="whatsappMessage">
+                <!-- Mensagem será gerada via JavaScript -->
+            </div>
+            
+            <div class="delivery-summary">
+                <h3><i class="fas fa-shipping-fast"></i> FORMA DE RECEBIMENTO</h3>
+                <p id="deliverySummaryText">Retirada no estabelecimento</p>
+            </div>
+            
+            <a class="btn btn-whatsapp" id="whatsappLink" target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp"></i> ABRIR WHATSAPP E ENVIAR PEDIDO
+            </a>
+            
+            <button class="btn btn-back" id="backToFormBtn" style="margin-top: 15px;">
+                <i class="fas fa-edit"></i> EDITAR DADOS DO PEDIDO
+            </button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo-footer">
+                <div class="footer-logo-image">
+                    <img src="logo.png" alt="Meu Hambúrguer" id="footerLogoImage" 
+                         onerror="this.style.display='none'; document.getElementById('footerLogoTextFallback').style.display='flex';">
+                    <div class="footer-logo-text-fallback" id="footerLogoTextFallback">
+                        <i class="fas fa-hamburger logo-icon"></i>
+                        MEU HAMBÚRGUER
+                    </div>
+                </div>
+            </div>
+            <p class="footer-text">Hambúrguer artesanal feito na hora | Pedidos via WhatsApp (81) 98851-1166</p>
+            <p class="footer-text">© <span id="currentYear">2024</span> Meu Hambúrguer. Todos os direitos reservados.</p>
+            <p class="footer-text small">Desenvolvido com ❤️ para hambúrgueres especiais</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
