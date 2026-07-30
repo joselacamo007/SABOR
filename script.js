@@ -1958,7 +1958,7 @@ function logAnalytics(event, data = {}) {
 // PARA ABRIR: mude para false
 // PARA FECHAR: mude para true
 // ============================================
-const STORE_IS_CLOSED = true; // <--- MUDE AQUI: true = fechado, false = aberto
+const STORE_IS_CLOSED = false; // <--- MUDE AQUI: true = fechado, false = aberto
 // ============================================
 
 // Atualizar interface baseado na variável
