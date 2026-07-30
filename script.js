@@ -2,16 +2,17 @@
 // CONFIGURAÇÕES DO SISTEMA
 // ============================================
 const CONFIG = {
-    whatsappNumber: "5581988511166",
-    whatsappGroupLink: "https://chat.whatsapp.com/LH9DxbcrNOy2IzhWFXUTBK?mode=gi_t",
+    whatsappNumber: "5581995923940",
+    whatsappGroupLink: "https://chat.whatsapp.com/DGJ4iTZbY7X4BIW53LNeMo",
     storeName: "MEU HAMBÚRGUER",
     currency: "R$",
     maxCartItems: 20,
     maxItemQuantity: 10,
+    deliveryFee: 0.00, // Taxa de entrega
     giftOptions: {
         'pipoca': { name: 'Pipoca', emoji: '🍿', icon: 'fa-popcorn' },
         'pirulito': { name: 'Pirulito', emoji: '🍭', icon: 'fa-candy-cane' },
-        'chocolate': { name: 'Chocolate', emoji: '🍫', icon: 'fa-cookie-bite' },
+        //'chocolate': { name: 'Chocolate', emoji: '🍫', icon: 'fa-cookie-bite' },
         'nenhum': { name: 'Sem brinde', emoji: '❌', icon: 'fa-times-circle' }
     },
     paymentMethods: {
@@ -19,7 +20,7 @@ const CONFIG = {
         'Cartão': 'Cartão',
         'Pix': 'PIX'
     },
-    storageKey: 'burgerOrderData_v2',
+    storageKey: 'burgerOrderData_v3',
     
     // Google Forms Configuration
     googleFormId: 'https://docs.google.com/forms/d/e/1FAIpQLSeEfYeibHjK58glQ954JYJrDnzgfHsvmB2sD4-aCTMrV5E3Jw/formResponse',
@@ -37,7 +38,7 @@ const CONFIG = {
     promotions: {
         comboFamilia: {
             name: "Combo Família",
-            description: "4 hambúrgueres + 4 refrigerantes",
+            description: "4 hambúrgueres",
             price: 60.00,
             items: [
                 { itemId: 1, quantity: 1 },
@@ -52,97 +53,201 @@ const CONFIG = {
 // DADOS DO CARDÁPIO
 // ============================================
 const menuItems = [
+    // HAMBÚRGUERES
     {
         id: 1,
-        name: " Clássico",
-        description: "Hambúrguer, queijo muçarela, maionese caseira, tomate e alface americana.",
-        basePrice: 15,
-        image: "imagem/especial.png",
+        name: " Sabor hamburguer",
+        description: "Pão, 120g carne, salada e molho especial.",
+        basePrice: 11.99,
+        image: "imagem/1.png",
+        category: "hamburguer",
         additions: [
             { id: 1, name: "Bacon", price: 2.00 },
-            { id: 2, name: "Ovo", price: 2.00 },
+            { id: 2, name: "Ovo", price: 0.00 },
             { id: 3, name: "Cheddar", price: 2.00 },
-            { id: 4, name: "Onion Rings", price: 3.00 }
+            
         ]
     },
     {
         id: 2,
-        name: " Duplo Impacto",
-        description: "Hambúrguer, queijo muçarela, maionese caseira, tomate e alface americana.",
-        basePrice: 20.00,
+        name: "Sabor combo Bacon",
+        description: " Pão, 120g carne, salada e molho especial, E O lendário sabor Bacon é um mito pelo seu sabor inigualável.",
+        basePrice: 19.99,
         image: "imagem/duplo.png",
+        category: "hamburguer",
         additions: [
-            { id: 5, name: "Cebola Caramelizada", price: 2.00 },
-            { id: 6, name: "Picles", price: 1.50 },
-            { id: 7, name: "Molho da Casa", price: 1.50 },
+            { id: 5, name: "Sem cebola Caramelizada", price: 0.00 },
+            
+            { id: 7, name: "Molho da Casa", price: 0.00 },
             { id: 8, name: "Bacon Extra", price: 3.00 }
         ]
     },
     {
         id: 3,
-        name: " Duplo Impacto",
-        description: "Hambúrguer, queijo muçarela, maionese caseira, tomate e alface americana.",
-        basePrice: 20.00,
-        image: "imagem/smash.png",
+        name: " Triplo Cheese",
+        description: "Pão, 3 carnes angus, 6 fatias de queijo e molho.",
+        basePrice: 22.99,
+        image: "imagem/55.png",
+        category: "hamburguer",
         additions: [
-            { id: 5, name: "Cebola Caramelizada", price: 2.00 },
-            { id: 6, name: "Picles", price: 1.50 },
-            { id: 7, name: "Molho da Casa", price: 1.50 },
+            { id: 5, name: "Sem cebola Caramelizada", price: 0.00 },
+            
+            { id: 7, name: "Molho da Casa", price: 0.00 },
+            { id: 8, name: "Bacon Extra", price: 3.00 }
+        ]
+    },
+
+
+
+    {
+        id: 4,
+        name: " Sabor forró",
+        description: "Tudo que é bom, queremos em dobro! com 2 deliciosas carnes de 180g ao ponto, com 4 fatias de queijo cheddar e pão brioche selado na manteiga.",
+        basePrice: 20.90,
+        image: "imagem/smash.png",
+        category: "hamburguer",
+        additions: [
+            { id: 5, name: "Sem cebola Caramelizada", price: 0.00 },
+            
+            { id: 7, name: "Molho da Casa", price: 0.00 },
             { id: 8, name: "Bacon Extra", price: 3.00 }
         ]
     },
     {
-        id: 4,
-        name: " Cheddar",
-        description: "Hambúrguer bovino, cheddar cremoso, bacon crocante e molho barbecue no pão australiano.",
-        basePrice: 18.00,
-        image: "imagem/cheddar.png",
+        id: 5,
+        name: "Sabor Bacon",
+        description: "O lendário sabor Bacon é um mito pelo seu sabor inigualável! Com carne angus de 120g coberto com queijo derretido, finas fatias de bacon crocante, salada e molho especial.",
+        basePrice: 17.99,
+        image: "imagem/duplo bacon.png",
+        category: "hamburguer",
         additions: [
-            { id: 9, name: "Guacamole", price: 4.00 },
-            { id: 10, name: "Pimenta Extra", price: 1.00 },
+           
+            
             { id: 11, name: "Cream Cheese", price: 3.00 },
             { id: 12, name: "Cebola Roxa", price: 2.00 }
         ]
     },
     {
-        id: 5,
-        name: " Frango Crocante",
-        description: "Pão de batata, filé de frango empanado, queijo coalho, alface e molho de ervas.",
-        basePrice: 15.00,
-        image: "imagem/frango.png",
+        id: 6,
+        name: " Sabor Calabresa",
+        description: "Pão, 120g carne especial, queijo derretido, calabresa, salada, e molho especial.",
+        basePrice: 16,
+        image: "imagem/5.png",
+        category: "hamburguer",
         additions: [
-            { id: 13, name: "Catupiry", price: 3.00 },
+            { id: 13, name: "Sem cebola Caramelizada", price: 0.00 },
             { id: 14, name: "Milho", price: 2.00 },
             { id: 15, name: "Bacon", price: 2.00 },
             { id: 16, name: "Molho Agridoce", price: 2.00 }
         ]
     },
-    {
-        id: 6,
-        name: " Vegetariano",
-        description: "Pão integral, hambúrguer de grão-de-bico, abacate, rúcula, tomate seco e queijo.",
-        basePrice: 14.00,
-        image: "imagem/vegetariano.png",
-        additions: [
-            { id: 17, name: "Beringela Grelhada", price: 3.00 },
-            { id: 18, name: "Hummus", price: 3.00 },
-            { id: 19, name: "Cogumelos", price: 4.00 },
-            { id: 20, name: "Queijo Vegano", price: 5.00 }
-        ]
-    },
-    {
+    /*{
         id: 7,
-        name: " Egg Burguer",
-        description: "Hambúrguer suculento, ovo frito, queijo muçarela, maionese caseira e alface americana.",
-        basePrice: 17.00,
-        image: "imagem/egg.png",
+        name: " Sabor Frango",
+        description: "Pão, 120g frango especial, queijo, salada e molho especial.",
+        basePrice: 17,
+        image: "imagem/vegetariano.png",
+        category: "hamburguer",
         additions: [
-            { id: 21, name: "Onion Rings", price: 3.00 },
+            { id: 23, name: "Bacon Extra", price: 4.00 },
+            
+            
+            { id: 5, name: "Sem cebola Caramelizada", price: 0.00 },
+        ]
+    },*/
+    {
+        id: 8,
+        name: "Sabor Egg",
+        description: "Pão, 120g carne especial, queijo derretido, ovo, salada e molho especial.",
+        basePrice: 15,
+        image: "imagem/egg.png",
+        category: "hamburguer",
+        additions: [
+            { id: 5, name: "Sem cebola Caramelizada", price: 0.00 },
             { id: 22, name: "Ovo", price: 2.00 },
             { id: 23, name: "Bacon Extra", price: 4.00 },
             { id: 24, name: "Molho Barbecue", price: 2.00 }
         ]
     },
+    {
+        id: 9,
+        name: "Sabor combo calabresa",
+        description: "Pão, 120g carne, salada e molho especial E Pão, 120g carne especial, queijo derretido, calabresa, salada, e molho especial.",
+        basePrice: 19.99,
+        image: "imagem/88.png",
+        category: "hamburguer",
+        additions: [
+            { id: 21, name: "Sem cebola Caramelizada", price: 0.00 },
+            { id: 22, name: "Ovo", price: 2.00 },
+            { id: 23, name: "Bacon Extra", price: 4.00 },
+            { id: 24, name: "Molho Barbecue", price: 2.00 }
+        ]
+    },
+
+
+    {
+        id: 10,
+        name: " Sabor hamburguer",
+        description: "Pão, 120g carne, salada e molho especial.",
+        basePrice: 11.99,
+        image: "imagem/1.png",
+        category: "hamburguer",
+        additions: [
+            { id: 1, name: "Bacon", price: 2.00 },
+            { id: 2, name: "Ovo", price: 0.00 },
+            { id: 3, name: "Cheddar", price: 2.00 },
+           
+        ]
+    },
+
+    // AÇAÍ
+    /*{
+        id: 200,
+        name: "🫐 Açaí 200ml",
+        description: "Açaí tradicional na tigela de 300ml. Escolha seus recheios favoritos!",
+        basePrice: 3.99,
+        image: "imagem/300.png",
+        category: "acai",
+        isAcai: true,
+        additions: [
+            { id: 100, name: "Granola", price: 0.00 },
+            { id: 101, name: "Leite Condensado", price: 0.00 },
+            { id: 102, name: "Leite em Pó", price: 0.00 },
+           // { id: 103, name: "Paçoca", price: 2.00 },
+            { id: 104, name: "Banana", price: 0.00 },
+            { id: 105, name: "Morango", price: 3.00 },
+            { id: 106, name: "Kiwi", price: 3.00 },
+            { id: 107, name: "Nutella", price: 4.00 },
+            { id: 108, name: "Ovomaltine", price: 3.00 },
+            { id: 109, name: "Chantilly", price: 2.00 },
+            //{ id: 110, name: "Coco Ralado", price: 2.00 },
+            { id: 111, name: "Gotas de Chocolate", price: 2.00 }
+        ]
+    },*/
+    /*{
+        id: 201,
+        name: "🫐 Açaí 300ml",
+        description: "Açaí tradicional na tigela de 500ml. Escolha seus recheios favoritos!",
+        basePrice: 5.99,
+        image: "imagem/500.png",
+        category: "acai",
+        isAcai: true,
+        additions: [
+            { id: 100, name: "Granola", price: 2.00 },
+            { id: 101, name: "Leite Condensado", price: 2.00 },
+            { id: 102, name: "Leite em Pó", price: 2.00 },
+            { id: 103, name: "Paçoca", price: 2.00 },
+            { id: 104, name: "Banana", price: 2.00 },
+            { id: 105, name: "Morango", price: 3.00 },
+            { id: 106, name: "Kiwi", price: 3.00 },
+            { id: 107, name: "Nutella", price: 4.00 },
+            { id: 108, name: "Ovomaltine", price: 3.00 },
+            { id: 109, name: "Chantilly", price: 2.00 },
+            { id: 110, name: "Coco Ralado", price: 2.00 },
+            { id: 111, name: "Gotas de Chocolate", price: 2.00 }
+        ]
+    },*/
+    
     
     // BEBIDAS
     {
@@ -158,25 +263,17 @@ const menuItems = [
         id: 101,
         name: " Suco Natural",
         description: "Suco natural 500ml. Sabores: Laranja, Maracujá, Abacaxi.",
-        basePrice: 7.00,
+        basePrice: 3.00,
         image: "imagem/suco.png",
         category: "bebida",
         additions: []
     },
-    {
-        id: 102,
-        name: " Cerveja Heineken",
-        description: "Long neck 330ml. Gelada e refrescante.",
-        basePrice: 8.00,
-        image: "imagem/heineken.png",
-        category: "bebida",
-        additions: []
-    },
+    
     {
         id: 103,
         name: " Cerveja Brahma",
         description: "Lata 350ml. A cerveja brasileira mais tradicional.",
-        basePrice: 6.50,
+        basePrice: 4.50,
         image: "imagem/cerveja.png",
         category: "bebida",
         additions: []
@@ -219,7 +316,7 @@ const state = {
     promotions: {
         applied: []
     },
-    version: '2.1'
+    version: '3.0'
 };
 
 // ============================================
@@ -230,59 +327,7 @@ let submitted = false;
 // ============================================
 // CACHE DE ELEMENTOS DOM
 // ============================================
-const DOM = {
-    cartCount: null,
-    cartTotal: null,
-    floatingCartCount: null,
-    floatingCartTotal: null,
-    cartInfo: null,
-    cartFloatingMobile: null,
-    cartModal: null,
-    additionsModal: null,
-    closeCartModal: null,
-    closeAdditionsModal: null,
-    viewCartBtnDesktop: null,
-    viewCartBtnMobile: null,
-    addToCartBtn: null,
-    cancelAdditionsBtn: null,
-    finalizeOrderBtn: null,
-    finalizeFromSummaryBtn: null,
-    viewFullCartBtn: null,
-    proceedToFormBtn: null,
-    continueShoppingBtn: null,
-    orderForm: null,
-    customerNameInput: null,
-    customerPhoneInput: null,
-    neighborhoodInput: null,
-    streetInput: null,
-    paymentMethodSelect: null,
-    observationsTextarea: null,
-    charCount: null,
-    backToOrderBtn: null,
-    backToFormBtn: null,
-    menuSection: null,
-    menuGrid: null,
-    orderSummary: null,
-    customerForm: null,
-    whatsappSection: null,
-    whatsappMessage: null,
-    whatsappLink: null,
-    giftOptions: null,
-    submitFormBtn: null,
-    // Novos elementos
-    deliveryOptionsForm: null,
-    streetGroup: null,
-    deliverySummaryText: null,
-    // Campos ocultos do Google Forms
-    hiddenCustomerName: null,
-    hiddenPhone: null,
-    hiddenNeighborhood: null,
-    hiddenPaymentMethod: null,
-    hiddenObservations: null,
-    hiddenOrderItems: null,
-    hiddenTotalAmount: null,
-    hiddenDeliveryType: null
-};
+const DOM = {};
 
 // ============================================
 // INICIALIZAÇÃO
@@ -303,7 +348,7 @@ function initializeApp() {
     setupAccessibility();
     updateDeliveryFields();
     
-    console.log('🍔 Cardápio Digital inicializado com sucesso!');
+    console.log('🍔🫐 Cardápio Digital inicializado com sucesso!');
     logAnalytics('page_view');
 }
 
@@ -354,12 +399,10 @@ function cacheDOMElements() {
     
     DOM.submitFormBtn = document.getElementById('submitFormBtn');
     
-    // Novos elementos
     DOM.deliveryOptionsForm = document.querySelectorAll('.delivery-option-form');
     DOM.streetGroup = document.getElementById('streetGroup');
     DOM.deliverySummaryText = document.getElementById('deliverySummaryText');
     
-    // Campos ocultos do Google Forms
     DOM.hiddenCustomerName = document.getElementById('hiddenCustomerName');
     DOM.hiddenPhone = document.getElementById('hiddenPhone');
     DOM.hiddenNeighborhood = document.getElementById('hiddenNeighborhood');
@@ -378,11 +421,13 @@ function renderMenu() {
     
     DOM.menuGrid.innerHTML = '';
     
-    const burgers = menuItems.filter(item => !item.category || item.category !== 'bebida');
+    const burgers = menuItems.filter(item => item.category === 'hamburguer');
+    const acaiItems = menuItems.filter(item => item.category === 'acai');
     const drinks = menuItems.filter(item => item.category === 'bebida');
     
     const fragment = document.createDocumentFragment();
     
+    // Categoria Hambúrgueres
     if (burgers.length > 0) {
         const titleDiv = document.createElement('div');
         titleDiv.className = 'menu-category-title';
@@ -396,6 +441,21 @@ function renderMenu() {
         fragment.appendChild(menuItemElement);
     });
     
+    // Categoria Açaí
+    if (acaiItems.length > 0) {
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'menu-category-title acai-category';
+        titleDiv.style.gridColumn = '1 / -1';
+        titleDiv.innerHTML = `<h3><i class="fas fa-ice-cream"></i> AÇAÍ</h3>`;
+        fragment.appendChild(titleDiv);
+    }
+    
+    acaiItems.forEach(item => {
+        const menuItemElement = createMenuItemElement(item);
+        fragment.appendChild(menuItemElement);
+    });
+    
+    // Categoria Bebidas
     if (drinks.length > 0) {
         const titleDiv = document.createElement('div');
         titleDiv.className = 'menu-category-title';
@@ -414,7 +474,7 @@ function renderMenu() {
 
 function createMenuItemElement(item) {
     const div = document.createElement('div');
-    div.className = 'menu-item';
+    div.className = `menu-item ${item.isAcai ? 'acai-item' : ''}`;
     div.dataset.id = item.id;
     
     div.innerHTML = `
@@ -424,8 +484,7 @@ function createMenuItemElement(item) {
         <div class="item-details">
             <div class="item-header">
                 <h3 class="item-name">
-                    <span class="item-icon">${item.name.charAt(0)}</span>
-                    ${item.name.substring(1)}
+                    ${item.name}
                 </h3>
                 <div class="item-price-inline">
                     ${formatCurrency(item.basePrice)}
@@ -434,8 +493,8 @@ function createMenuItemElement(item) {
             <p class="item-description">${item.description}</p>
             
             <button class="btn btn-add" data-id="${item.id}" 
-                    aria-label="Personalizar e adicionar ${item.name} ao carrinho">
-                <i class="fas fa-cart-plus"></i> PERSONALIZAR E ADICIONAR
+                    aria-label="${item.isAcai ? 'Escolher recheios e adicionar' : 'Personalizar e adicionar'} ${item.name} ao carrinho">
+                <i class="fas fa-cart-plus"></i> ${item.isAcai ? 'ESCOLHER RECHEIOS' : 'PERSONALIZAR E ADICIONAR'}
             </button>
         </div>
     `;
@@ -449,8 +508,8 @@ function createMenuItemElement(item) {
         const placeholder = document.createElement('div');
         placeholder.className = 'image-placeholder';
         placeholder.innerHTML = `
-            <i class="fas fa-hamburger"></i>
-            <span>${item.name.substring(1)}</span>
+            <i class="fas ${item.isAcai ? 'fa-ice-cream' : 'fa-hamburger'}"></i>
+            <span>${item.name.substring(2)}</span>
         `;
         
         imageDiv.appendChild(placeholder);
@@ -463,13 +522,11 @@ function createMenuItemElement(item) {
 // LISTENERS PARA OPÇÕES DE ENTREGA
 // ============================================
 function setupDeliveryListeners() {
-    // Listener para opções de entrega/retirada
     DOM.deliveryOptionsForm?.forEach(option => {
         option.addEventListener('click', () => {
             const type = option.dataset.type;
             state.customer.deliveryType = type;
             
-            // Atualizar seleção visual
             DOM.deliveryOptionsForm.forEach(o => {
                 o.classList.remove('selected');
                 const radio = o.querySelector('.delivery-radio');
@@ -479,18 +536,14 @@ function setupDeliveryListeners() {
             option.classList.add('selected');
             option.querySelector('.delivery-radio').classList.add('selected');
             
-            // Atualizar campos do formulário
             updateDeliveryFields();
-            
-            // Salvar no estado
+            updateCartDisplay(); // Atualiza para mostrar/esconder taxa
             saveToLocalStorage();
             
-            // Log para analytics
             logAnalytics('delivery_option_selected', { delivery_type: type });
         });
     });
     
-    // Listener para atualizar campo de rua
     if (DOM.streetInput) {
         DOM.streetInput.addEventListener('input', function() {
             state.customer.street = this.value;
@@ -502,7 +555,6 @@ function setupDeliveryListeners() {
 function updateDeliveryFields() {
     const isDelivery = state.customer.deliveryType === 'delivery';
     
-    // Atualizar texto do campo de rua
     if (DOM.streetInput) {
         if (isDelivery) {
             DOM.streetInput.required = true;
@@ -513,11 +565,10 @@ function updateDeliveryFields() {
         }
     }
     
-    // Atualizar resumo na seção do WhatsApp
     if (DOM.deliverySummaryText) {
         const deliveryText = isDelivery 
-            ? `Entrega no endereço: ${state.customer.street || '[endereço não informado]'}, ${state.customer.neighborhood || '[bairro não informado]'}`
-            : 'Retirada no estabelecimento';
+            ? `Entrega no endereço: ${state.customer.street || '[endereço não informado]'}, ${state.customer.neighborhood || '[bairro não informado]'} (+ ${formatCurrency(CONFIG.deliveryFee)})`
+            : 'Retirada no estabelecimento (Grátis)';
         DOM.deliverySummaryText.textContent = deliveryText;
     }
 }
@@ -557,12 +608,13 @@ function addItemToCart(itemId, additions = []) {
     
     updateCartState();
     saveToLocalStorage();
-    showNotification(`${item.name} adicionado ao carrinho! 🛒`);
+    showNotification(`${item.name} adicionado ao carrinho! ${item.isAcai ? '🫐' : '🛒'}`);
     
     logAnalytics('add_to_cart', {
         item_id: itemId,
         item_name: item.name,
-        additions_count: additions.length
+        additions_count: additions.length,
+        is_acai: item.isAcai || false
     });
     
     return true;
@@ -578,6 +630,11 @@ function updateCartState() {
         total += itemPrice * item.quantity;
         count += item.quantity;
     });
+    
+    // Adicionar taxa de entrega se for delivery
+    if (state.customer.deliveryType === 'delivery') {
+        total += CONFIG.deliveryFee;
+    }
     
     state.cart.total = total;
     state.cart.count = count;
@@ -614,11 +671,27 @@ function updateCartDisplay() {
                 <div style="font-size: 0.9rem; color: var(--success-color);">
                     -${formatCurrency(orderTotal.discount)} desconto
                 </div>
+                ${state.customer.deliveryType === 'delivery' ? `
+                <div style="font-size: 0.9rem; color: var(--text-light);">
+                    +${formatCurrency(CONFIG.deliveryFee)} entrega
+                </div>
+                ` : ''}
                 <div>${formatCurrency(orderTotal.total)}</div>
             </div>
         `;
     } else if (modalOrderTotal) {
-        modalOrderTotal.textContent = formattedTotal;
+        if (state.customer.deliveryType === 'delivery' && state.cart.count > 0) {
+            modalOrderTotal.innerHTML = `
+                <div style="text-align: right;">
+                    <div style="font-size: 0.9rem; color: var(--text-light);">
+                        +${formatCurrency(CONFIG.deliveryFee)} entrega
+                    </div>
+                    <div>${formattedTotal}</div>
+                </div>
+            `;
+        } else {
+            modalOrderTotal.textContent = formattedTotal;
+        }
     }
 }
 
@@ -676,6 +749,16 @@ function updateCartSummary() {
         html += `
             <div class="more-items-indicator">
                 +${state.cart.items.length - 3} mais itens...
+            </div>
+        `;
+    }
+    
+    // Adicionar taxa de entrega no resumo
+    if (state.customer.deliveryType === 'delivery') {
+        html += `
+            <div class="delivery-fee-row">
+                <span>Taxa de entrega:</span>
+                <span class="fee-value">+ ${formatCurrency(CONFIG.deliveryFee)}</span>
             </div>
         `;
     }
@@ -754,7 +837,7 @@ function applyComboPromotion(comboType) {
 }
 
 // ============================================
-// CALCULAR DESCONTOS
+// CALCULAR DESCONTOS E TOTAIS
 // ============================================
 function calculateOrderTotal() {
     let subtotal = 0;
@@ -775,15 +858,18 @@ function calculateOrderTotal() {
         subtotal += itemTotal;
     });
     
+    const deliveryFee = state.customer.deliveryType === 'delivery' ? CONFIG.deliveryFee : 0;
+    
     return {
         subtotal: subtotal + discount,
         discount: discount,
-        total: subtotal
+        deliveryFee: deliveryFee,
+        total: subtotal + deliveryFee
     };
 }
 
 // ============================================
-// MODAL DE ADICIONAIS
+// MODAL DE ADICIONAIS (COM SUPORTE A AÇAÍ)
 // ============================================
 function openAdditionsModal(itemId) {
     state.ui.currentItemId = itemId;
@@ -793,8 +879,32 @@ function openAdditionsModal(itemId) {
     if (!item) return;
     
     const additionsItemName = document.getElementById('additionsItemName');
+    const additionsModalHeader = document.querySelector('.additions-modal-header');
+    const addToCartBtn = document.getElementById('addToCartBtn');
+    
     if (additionsItemName) {
-        additionsItemName.textContent = `Personalizar ${item.name}`;
+        additionsItemName.textContent = item.isAcai ? 
+            `Escolher recheios para ${item.name}` : 
+            `Personalizar ${item.name}`;
+    }
+    
+    // Aplicar estilo especial para Açaí
+    if (additionsModalHeader) {
+        if (item.isAcai) {
+            additionsModalHeader.classList.add('acai-header');
+        } else {
+            additionsModalHeader.classList.remove('acai-header');
+        }
+    }
+    
+    if (addToCartBtn) {
+        if (item.isAcai) {
+            addToCartBtn.classList.add('acai-btn');
+            addToCartBtn.innerHTML = '<i class="fas fa-cart-plus"></i> ADICIONAR AO CARRINHO';
+        } else {
+            addToCartBtn.classList.remove('acai-btn');
+            addToCartBtn.innerHTML = '<i class="fas fa-cart-plus"></i> ADICIONAR AO CARRINHO';
+        }
     }
     
     renderAdditionsList(item);
@@ -804,7 +914,10 @@ function openAdditionsModal(itemId) {
     document.body.style.overflow = 'hidden';
     state.ui.currentModal = 'additions';
     
-    logAnalytics('open_additions_modal', { item_id: itemId });
+    logAnalytics('open_additions_modal', { 
+        item_id: itemId,
+        is_acai: item.isAcai || false
+    });
 }
 
 function renderAdditionsList(item) {
@@ -829,31 +942,30 @@ function renderAdditionsList(item) {
         const isSelected = state.ui.selectedAdditions.has(addition.id);
         
         const additionElement = document.createElement('div');
-        additionElement.className = `addition-option ${isSelected ? 'selected' : ''}`;
+        additionElement.className = `addition-option ${isSelected ? 'selected' : ''} ${item.isAcai ? 'acai-addition' : ''}`;
         additionElement.dataset.id = addition.id;
         additionElement.innerHTML = `
             <div class="addition-option-info">
                 <div class="addition-checkbox"></div>
                 <span class="addition-option-name">${addition.name}</span>
             </div>
-            <span class="addition-option-price">+${formatCurrency(addition.price)}</span>
+            <span class="addition-option-price">${addition.price === 0 ? 'INCLUÍDO' : '+' + formatCurrency(addition.price)}</span>
         `;
         
-        additionElement.addEventListener('click', () => toggleAddition(addition));
+        additionElement.addEventListener('click', () => toggleAddition(addition, item));
         fragment.appendChild(additionElement);
     });
     
     additionsList.appendChild(fragment);
 }
 
-function toggleAddition(addition) {
+function toggleAddition(addition, item) {
     if (state.ui.selectedAdditions.has(addition.id)) {
         state.ui.selectedAdditions.delete(addition.id);
     } else {
         state.ui.selectedAdditions.add(addition.id);
     }
     
-    const item = menuItems.find(i => i.id === state.ui.currentItemId);
     if (item) {
         renderAdditionsList(item);
         updateAdditionsTotal(item);
@@ -926,6 +1038,17 @@ function renderCartItems() {
     });
     
     cartItemsElement.appendChild(fragment);
+    
+    // Adicionar linha de taxa de entrega se for delivery
+    if (state.customer.deliveryType === 'delivery') {
+        const deliveryFeeElement = document.createElement('div');
+        deliveryFeeElement.className = 'cart-delivery-fee';
+        deliveryFeeElement.innerHTML = `
+            <span>Taxa de entrega:</span>
+            <span>+ ${formatCurrency(CONFIG.deliveryFee)}</span>
+        `;
+        cartItemsElement.appendChild(deliveryFeeElement);
+    }
 }
 
 function createCartItemElement(item, index) {
@@ -1089,7 +1212,7 @@ function renderOrderSummary() {
         `;
     });
     
-    const totalHTML = `
+    let totalHTML = `
         <div style="margin-bottom: 15px;">
             <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                 <span>Subtotal:</span>
@@ -1101,6 +1224,19 @@ function renderOrderSummary() {
                 <span>-${formatCurrency(orderTotal.discount)}</span>
             </div>
             ` : ''}
+    `;
+    
+    // Adicionar taxa de entrega
+    if (orderTotal.deliveryFee > 0) {
+        totalHTML += `
+            <div class="order-delivery-fee">
+                <span>Taxa de entrega:</span>
+                <span>+ ${formatCurrency(orderTotal.deliveryFee)}</span>
+            </div>
+        `;
+    }
+    
+    totalHTML += `
             <div style="display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 700; color: var(--primary-color); padding-top: 10px; border-top: 2px solid var(--gray);">
                 <span>TOTAL:</span>
                 <span>${formatCurrency(orderTotal.total)}</span>
@@ -1118,7 +1254,6 @@ function renderOrderSummary() {
 function setupFormListeners() {
     if (!DOM.observationsTextarea || !DOM.charCount) return;
     
-    // Validação de caracteres no textarea
     DOM.observationsTextarea.addEventListener('input', function() {
         const length = this.value.length;
         DOM.charCount.textContent = length;
@@ -1132,7 +1267,7 @@ function setupFormListeners() {
         state.customer.observations = this.value;
         saveToLocalStorage();
     });
-    
+
     // Validação de telefone com máscara
     if (DOM.customerPhoneInput) {
         DOM.customerPhoneInput.addEventListener('input', function(e) {
@@ -1240,7 +1375,17 @@ function prepareFormData() {
     });
     
     const orderTotal = calculateOrderTotal();
-    orderSummary += `*TOTAL: ${formatCurrency(orderTotal.total)}*\n`;
+    orderSummary += `*SUBTOTAL: ${formatCurrency(orderTotal.subtotal)}*\n`;
+    
+    if (orderTotal.discount > 0) {
+        orderSummary += `*DESCONTO: -${formatCurrency(orderTotal.discount)}*\n`;
+    }
+    
+    if (orderTotal.deliveryFee > 0) {
+        orderSummary += `*TAXA DE ENTREGA: +${formatCurrency(orderTotal.deliveryFee)}*\n`;
+    }
+    
+    orderSummary += `*TOTAL FINAL: ${formatCurrency(orderTotal.total)}*\n`;
     
     // Preencher campos ocultos do Google Forms
     if (DOM.hiddenCustomerName) {
@@ -1264,8 +1409,8 @@ function prepareFormData() {
     }
     
     if (DOM.hiddenDeliveryType) {
-        const deliveryText = state.customer.deliveryType === 'delivery' ? 'Entrega' : 'Retirada';
-        DOM.hiddenDeliveryType.value = deliveryText;
+        // Envia apenas o tipo de entrega (sem a taxa, pois o total já inclui)
+        DOM.hiddenDeliveryType.value = state.customer.deliveryType === 'delivery' ? 'Entrega' : 'Retirada';
     }
     
     if (DOM.hiddenOrderItems) {
@@ -1356,7 +1501,18 @@ function generateWhatsAppMessage() {
         message += `\n`;
     }
     
-    message += `*💰 TOTAL: ${formatCurrency(orderTotal.total)}*\n\n`;
+    // Detalhes do pedido
+    message += `*💰 SUBTOTAL: ${formatCurrency(orderTotal.subtotal)}*\n`;
+    
+    if (orderTotal.discount > 0) {
+        message += `*💰 DESCONTO: -${formatCurrency(orderTotal.discount)}*\n`;
+    }
+    
+    if (orderTotal.deliveryFee > 0) {
+        message += `*🛵 TAXA DE ENTREGA: +${formatCurrency(orderTotal.deliveryFee)}*\n`;
+    }
+    
+    message += `*💰 TOTAL FINAL: ${formatCurrency(orderTotal.total)}*\n\n`;
     
     if (state.customer.selectedGift !== 'nenhum') {
         const gift = CONFIG.giftOptions[state.customer.selectedGift];
@@ -1615,7 +1771,8 @@ function setupEventListeners() {
         
         logAnalytics('submit_google_form', {
             delivery_type: state.customer.deliveryType,
-            items_count: state.cart.count
+            items_count: state.cart.count,
+            has_delivery_fee: state.customer.deliveryType === 'delivery'
         });
     });
     
@@ -1773,6 +1930,7 @@ function logAnalytics(event, data = {}) {
         timestamp: new Date().toISOString(),
         cart_count: state.cart.count,
         cart_total: state.cart.total,
+        delivery_type: state.customer.deliveryType,
         ...data
     };
     
@@ -1789,20 +1947,96 @@ function logAnalytics(event, data = {}) {
         localStorage.setItem('analytics_logs', JSON.stringify(logs));
     } catch (error) {}
 }
+// ============================================
+// CONTROLE DE FECHAMENTO DA LOJA VIA CÓDIGO
+// ============================================
+
+// 🔑 MUDE ESTA VARIÁVEL PARA CONTROLAR A LOJA:
+//    true  = LOJA FECHADA (mostra o alerta)
+//    false = LOJA ABERTA (funcionamento normal)
+// 
+// PARA ABRIR: mude para false
+// PARA FECHAR: mude para true
+// ============================================
+const STORE_IS_CLOSED = true; // <--- MUDE AQUI: true = fechado, false = aberto
+// ============================================
+
+// Atualizar interface baseado na variável
+function updateStoreStatus() {
+    const overlay = document.getElementById('maintenanceOverlay');
+    const badge = document.querySelector('.maintenance-badge');
+    const body = document.body;
+    
+    if (STORE_IS_CLOSED) {
+        // Mostrar overlay
+        overlay?.classList.add('active');
+        
+        // Mostrar badge
+        badge?.classList.add('active');
+        
+        // Adicionar classe ao body
+        body.classList.add('store-closed');
+        
+        // Travar scroll
+        document.body.style.overflow = 'hidden';
+        
+        console.log('🔒 LOJA FECHADA - Modo manutenção ativado');
+    } else {
+        // Esconder overlay
+        overlay?.classList.remove('active');
+        
+        // Esconder badge
+        badge?.classList.remove('active');
+        
+        // Remover classe do body
+        body.classList.remove('store-closed');
+        
+        // Liberar scroll
+        document.body.style.overflow = 'auto';
+        
+        console.log('🟢 LOJA ABERTA - Funcionamento normal');
+    }
+}
+
+// Inicializar controle
+function initStoreControl() {
+    // Criar badge no header se não existir
+    const tagline = document.querySelector('.tagline');
+    if (tagline && !document.querySelector('.maintenance-badge')) {
+        const badge = document.createElement('span');
+        badge.className = 'maintenance-badge';
+        badge.textContent = '🔒 FECHADO';
+        tagline.appendChild(badge);
+    }
+    
+    // Atualizar UI baseado na variável
+    updateStoreStatus();
+    
+    console.log(`🏪 Status da loja: ${STORE_IS_CLOSED ? '🔒 FECHADA' : '🟢 ABERTA'}`);
+    console.log('💡 Para abrir/fechar, edite a variável STORE_IS_CLOSED no script.js');
+}
 
 // ============================================
 // INICIALIZAÇÃO FINAL
 // ============================================
+
+// Sobrescrever o initializeApp original
+const originalInit = initializeApp;
+initializeApp = function() {
+    originalInit();
+    initStoreControl(); // Inicializa o controle de fechamento
+};
+
 window.appState = state;
 window.appConfig = CONFIG;
 
 console.log(`
 ╔═══════════════════════════════════════╗
-║    🍔 CARDÁPIO DIGITAL INICIADO!     ║
+║    🍔🫐 CARDÁPIO DIGITAL INICIADO!   ║
 ║                                       ║
 ║  Versão: ${state.version}                    ║
-║  Itens no cardápio: ${menuItems.length}              ║
+║  Itens no cardápio: ${menuItems.length}             ║
 ║  WhatsApp: ${CONFIG.whatsappNumber}     ║
-║  Google Forms: ${CONFIG.googleFormId} ║
+║  Loja: ${STORE_IS_CLOSED ? '🔒 FECHADA' : '🟢 ABERTA'}   ║
 ╚═══════════════════════════════════════╝
 `);

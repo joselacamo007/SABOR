@@ -17,6 +17,8 @@
     --success-dark: #388E3C;
     --whatsapp-color: #25D366;
     --whatsapp-dark: #128C7E;
+    --acai-color: #9C27B0;
+    --acai-dark: #7B1FA2;
     --text-color: #333;
     --text-light: #666;
     --background: #ffffff;
@@ -435,6 +437,30 @@ header {
     border-color: var(--secondary-color);
 }
 
+/* Estilo especial para Açaí */
+.menu-item.acai-item {
+    border: 2px solid var(--acai-color);
+}
+
+.menu-item.acai-item:hover {
+    border-color: var(--acai-dark);
+    box-shadow: 0 8px 25px rgba(156, 39, 176, 0.15);
+}
+
+.menu-item.acai-item .item-name {
+    color: var(--acai-color);
+}
+
+.menu-item.acai-item .item-price-inline {
+    background-color: var(--acai-color);
+    color: var(--white);
+}
+
+.menu-item.acai-item:hover .item-price-inline {
+    background-color: var(--acai-dark);
+    color: var(--white);
+}
+
 .item-image {
     height: 250px;
     background-color: var(--gray-light);
@@ -561,6 +587,19 @@ header {
     color: var(--secondary-color);
 }
 
+/* Categoria Açaí */
+.menu-category-title.acai-category {
+    border-bottom-color: var(--acai-color);
+}
+
+.menu-category-title.acai-category h3 {
+    color: var(--acai-color);
+}
+
+.menu-category-title.acai-category i {
+    color: var(--acai-color);
+}
+
 /* ============================================
    BOTÕES
    ============================================ */
@@ -627,6 +666,15 @@ header {
     background-color: var(--success-dark);
     transform: translateY(-2px);
     box-shadow: var(--shadow);
+}
+
+/* Botão especial para Açaí */
+.menu-item.acai-item .btn-add {
+    background-color: var(--acai-color);
+}
+
+.menu-item.acai-item .btn-add:hover {
+    background-color: var(--acai-dark);
 }
 
 .btn-whatsapp {
@@ -950,6 +998,22 @@ header {
     border-top: 2px solid var(--gray);
 }
 
+/* Taxa de entrega no resumo */
+.delivery-fee-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--gray);
+}
+
+.delivery-fee-row .fee-value {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
 .btn-view-full-cart {
     background-color: var(--gray-dark);
     color: var(--white);
@@ -1218,6 +1282,22 @@ header {
     margin-bottom: 25px;
 }
 
+/* Taxa de entrega no modal */
+.cart-delivery-fee {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--gray);
+}
+
+.cart-delivery-fee span:last-child {
+    color: var(--success-color);
+    font-weight: 600;
+}
+
 .cart-actions {
     display: flex;
     flex-direction: column;
@@ -1299,6 +1379,11 @@ header {
     margin: 0;
 }
 
+/* Header especial para Açaí */
+.additions-modal-header.acai-header {
+    background-color: var(--acai-color);
+}
+
 .additions-list {
     padding: 25px;
     flex-grow: 1;
@@ -1327,6 +1412,22 @@ header {
 .addition-option.selected {
     border-color: var(--success-color);
     background-color: #e8f5e9;
+}
+
+/* Estilo para opções de Açaí */
+.addition-option.acai-addition:hover {
+    border-color: var(--acai-color);
+    background-color: #f3e5f5;
+}
+
+.addition-option.acai-addition.selected {
+    border-color: var(--acai-color);
+    background-color: #e1bee7;
+}
+
+.addition-option.acai-addition.selected .addition-checkbox {
+    background-color: var(--acai-color);
+    border-color: var(--acai-color);
 }
 
 .addition-option-info {
@@ -1370,6 +1471,10 @@ header {
     font-weight: 700;
     font-size: 1.1rem;
     flex-shrink: 0;
+}
+
+.addition-option.acai-addition .addition-option-price {
+    color: var(--acai-color);
 }
 
 .additions-summary {
@@ -1418,6 +1523,15 @@ header {
     box-shadow: var(--shadow);
 }
 
+/* Botão especial para Açaí */
+.btn-add-to-cart.acai-btn {
+    background-color: var(--acai-color);
+}
+
+.btn-add-to-cart.acai-btn:hover {
+    background-color: var(--acai-dark);
+}
+
 /* ============================================
    CONFIRMAÇÃO DO PEDIDO
    ============================================ */
@@ -1463,6 +1577,22 @@ header {
     padding-top: 20px;
     border-top: 2px solid var(--gray);
     margin-top: 20px;
+}
+
+/* Taxa de entrega na confirmação */
+.order-delivery-fee {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--gray);
+}
+
+.order-delivery-fee span:last-child {
+    color: var(--success-color);
+    font-weight: 600;
 }
 
 /* ============================================
@@ -1731,6 +1861,22 @@ header {
     font-size: 0.9rem;
     color: var(--text-light);
     margin: 0;
+}
+
+.delivery-price {
+    display: inline-block;
+    margin-top: 5px;
+    padding: 4px 12px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.delivery-option-form.selected .delivery-price {
+    background-color: var(--success-color);
+    color: var(--white);
 }
 
 .delivery-selector {
@@ -2434,5 +2580,158 @@ footer {
     a {
         color: black;
         text-decoration: none;
+    }
+}
+/* ============================================
+   ALERTA DE LOJA FECHADA - MODO MANUTENÇÃO
+   ============================================ */
+.maintenance-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.88);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.5s ease;
+}
+
+.maintenance-overlay.active {
+    display: flex;
+}
+
+.maintenance-content {
+    background: linear-gradient(145deg, #1a1a2e, #16213e);
+    color: #ffffff;
+    max-width: 450px;
+    width: 100%;
+    padding: 45px 35px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    border: 3px solid #ff4444;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(255, 68, 68, 0.1);
+    animation: slideUp 0.5s ease;
+}
+
+.maintenance-content .maintenance-icon {
+    font-size: 4.5rem;
+    color: #ff4444;
+    margin-bottom: 15px;
+    display: block;
+    animation: pulse 1.5s infinite;
+}
+
+.maintenance-content .closed-badge {
+    display: inline-block;
+    background: #ff4444;
+    color: #fff;
+    padding: 5px 20px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.maintenance-content h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 10px;
+    font-weight: 800;
+}
+
+.maintenance-content .maintenance-message {
+    font-size: 1.05rem;
+    color: #ccc;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.maintenance-content .maintenance-time {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 68, 68, 0.2);
+}
+
+.maintenance-content .maintenance-time i {
+    color: #ff4444;
+    margin-right: 8px;
+}
+
+.maintenance-content .maintenance-wa {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 35px;
+    background-color: #25D366;
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.maintenance-content .maintenance-wa:hover {
+    background-color: #128C7E;
+    transform: scale(1.05);
+}
+
+/* Badge no header */
+.maintenance-badge {
+    display: none;
+    background: #ff4444;
+    color: #fff;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+    animation: pulse 1.5s infinite;
+    vertical-align: middle;
+}
+
+.maintenance-badge.active {
+    display: inline-block;
+}
+
+/* Desabilitar interações quando fechado */
+body.store-closed .btn-add,
+body.store-closed .btn-apply-promo,
+body.store-closed .btn-floating-cart,
+body.store-closed .btn-cart-desktop {
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+}
+
+body.store-closed .menu-item {
+    opacity: 0.6;
+    filter: grayscale(0.3);
+}
+
+body.store-closed .cart-floating-mobile {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+    .maintenance-content {
+        padding: 30px 20px;
+    }
+    
+    .maintenance-content h2 {
+        font-size: 1.6rem;
     }
 }
